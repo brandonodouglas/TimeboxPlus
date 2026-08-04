@@ -2,6 +2,7 @@ import { FlatList, StyleSheet, Text, View, TextInput, Button, TouchableHighlight
 import * as SQLite from 'expo-sqlite';
 import { getDB } from './database/db';
 import Stopwatch from './components/Stopwatch';
+import TimerInputModal from './components/TimerInputModal';
 import { useState, useEffect } from 'react';
 
 
@@ -24,17 +25,17 @@ export default function App() {
           setDbData(row.user_name)
 
         }
-         if (result.length > 1) {
+        if (result.length > 1) {
           await db.getAllAsync('DROP TABLE IF EXISTS USERS');
           console.log("Too many usernames in the database.")
         }
-          if (result.length < 1) {
-        setShowUserView(false)
-        console.log("The database is empty")
-      } else {
-        setShowUserView(true)
-        console.log("huh")
-      }
+        if (result.length < 1) {
+          setShowUserView(false)
+          console.log("The database is empty")
+        } else {
+          setShowUserView(true)
+          console.log("huh")
+        }
 
       } catch (e) {
         console.log("database empty, creating database")
@@ -43,7 +44,7 @@ export default function App() {
 
       }
 
-    
+
     }
     setup();
   }, []);
@@ -65,15 +66,16 @@ export default function App() {
     setShowUserView(true)
   }
   if (showUserView) {
-  
+
 
 
     return (<View style={styles.container}>
       <Text style={styles.title}>TimeboxPlus</Text>
       <Text style={styles.title}>Welcome, {dbdata} 👋.</Text>
       <Text style={styles.title}>------------------</Text>
-      
-<Stopwatch label={'Testing stopwatch label'} isCountUp={true} />
+      <Stopwatch label={'Testing Stopwatch Label'} isCountUp={true} />
+      <TimerInputModal label={'test'} secondsToCountDownFrom={0} />
+
 
 
 
@@ -101,40 +103,40 @@ export default function App() {
 
 }
 const options = {
-    style: {
-        margin: 'auto',
-    },
+  style: {
+    margin: 'auto',
+  },
+  textStyle: {
+    color: '#000000',
+  },
+  view: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    margin: 10,
+  },
+  highlight: {
+    backgroundColor: '#ffffff',
+  },
+  play: {
+    underlayColor: '#ffffff',
+    borderColor: '#d9dcdd',
     textStyle: {
-        color: '#000000',
+      color: '#000000',
     },
-    view: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        margin: 10,
+    style: {
+      backgroundColor: '#ffffff',
     },
-    highlight: {
-        backgroundColor: '#ffffff',
+  },
+  cancel: {
+    underlayColor: '#ffffff',
+    borderColor: '#d9dcdd',
+    textStyle: {
+      color: '#000000',
     },
-    play: {
-        underlayColor: '#ffffff',
-        borderColor: '#d9dcdd',
-        textStyle: {
-            color: '#000000',
-        },
-        style: {
-            backgroundColor: '#ffffff',
-        },
+    style: {
+      backgroundColor: '#ffffff',
     },
-    cancel: {
-        underlayColor: '#ffffff',
-        borderColor: '#d9dcdd',
-        textStyle: {
-            color: '#000000',
-        },
-        style: {
-            backgroundColor: '#ffffff',
-        },
-    },
+  },
 }
 
 const styles = StyleSheet.create({

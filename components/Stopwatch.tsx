@@ -141,14 +141,14 @@ export default function Stopwatch(props: StopwatchProps) {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        width: 'auto',
+        height: 'auto',
         backgroundColor: 'orange',
-        paddingTop: 50,
-        paddingHorizontal: 16,
         borderColor: 'black',
         borderStyle: 'dotted',
         borderWidth: 5,
         alignItems: 'center',
+        justifyContent: 'center',
     },
     item: {
         padding: 16,
