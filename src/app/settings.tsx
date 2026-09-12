@@ -1,10 +1,9 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-
 export default function Tab() {
   return (
     <View style={styles.container}>
-      <Text>Explore Page</Text>
+      <Text>Tab [Home|Settings]</Text>
     </View>
   );
 }
