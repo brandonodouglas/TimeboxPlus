@@ -4,21 +4,27 @@ import {
   isSuccessResponse,
   statusCodes,
 } from '@react-native-google-signin/google-signin';
+import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { supabase } from '../../lib/supabase';
 import { notionStyle } from './mystyles/notionStyle';
 
 
 
+
 export default function Tab() {
+  const [googleSignedInStatus, setGoogleSignedInStatus] = useState(false)
+  const [googleAccountUserName, setGoogleAccountUserName] = useState('')
+  
 
   GoogleSignin.configure({
     iosClientId: '1069392446627-qgok83dq08mdbconf3hqacsgu0g2i507.apps.googleusercontent.com',
   })
+ 
 
 
 
-
+if (googleSignedInStatus == false) {
   return (
     <View style={notionStyle.page}>
       <Text style={notionStyle.title}>TimeboxPlus.</Text>
@@ -27,6 +33,7 @@ export default function Tab() {
 
       <View style={notionStyle.divider}></View>
       <Text style={notionStyle.blockTextSmall}>Ready to get started? Sign in below! 🚀</Text>
+      
       <GoogleSigninButton
         size={GoogleSigninButton.Size.Wide}
         color={GoogleSigninButton.Color.Dark}
@@ -44,6 +51,8 @@ export default function Tab() {
               console.log(error, data)
               // Get full name from thedata response, use a js prettty printer for esponse dat
               console.log("Welcome: " + data.user?.user_metadata.full_name)
+              setGoogleAccountUserName(data.user?.user_metadata.full_name)
+              setGoogleSignedInStatus(true)
               
             
             } else {
@@ -71,6 +80,18 @@ export default function Tab() {
 
     </View>
   );
+
+} else {
+  return (
+    <View style={notionStyle.page}>
+      <Text style={notionStyle.title}>Welcome, {googleAccountUserName}👋!</Text>
+      <Text style={notionStyle.blockText}>Placeholder text to do with timers once the user is signed in via google or apple.</Text>
+
+  </View>
+  )
+  
+}
+  
 }
 
 const styles = StyleSheet.create({
