@@ -13,7 +13,6 @@ import { notionStyle } from './mystyles/notionStyle';
 export default function Tab() {
 
   GoogleSignin.configure({
-    webClientId: '1069392446627-0ggjeu120228md357gltg4vlq0j65uki.apps.googleusercontent.com',
     iosClientId: '1069392446627-qgok83dq08mdbconf3hqacsgu0g2i507.apps.googleusercontent.com',
   })
 
@@ -40,9 +39,13 @@ export default function Tab() {
               console.log("shit workedr")
               const { data, error } = await supabase.auth.signInWithIdToken({
                 provider: 'google',
-                token: response.data.idToken || "lol",
+                token: response.data.idToken,
               })
               console.log(error, data)
+              // Get full name from thedata response, use a js prettty printer for esponse dat
+              console.log("Welcome: " + data.user?.user_metadata.full_name)
+              
+            
             } else {
               console.log("the response was unsuccessful for some reason")
             }
