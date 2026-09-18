@@ -16,10 +16,11 @@ import { notionStyle } from './mystyles/notionStyle';
 
 export default function Tab() {
   const [googleSignedInStatus, setGoogleSignedInStatus] = useState(false)
-  const [googleAccountUserName, setGoogleAccountUserName] = useState('')
+  const [userName, setUserName] = useState('')
 
   const [appleSignedInStatus, setAppleSignedInStatus] = useState(false)
-  const [appleAccountUserName, setAppleAccountUserName] = useState('')
+
+  const [loggedIn, setLoggedIn] = useState(false);
 
 
   GoogleSignin.configure({
@@ -29,7 +30,7 @@ export default function Tab() {
 
 
 
-  if (googleSignedInStatus == false && appleSignedInStatus == false) {
+  if (!loggedIn) {
     return (
       <View style={notionStyle.page}>
         <Text style={notionStyle.title}>TimeboxPlus.</Text>
@@ -54,8 +55,8 @@ export default function Tab() {
                 })
                 console.log(error, data)
                 console.log("Welcome: " + data.user?.user_metadata.full_name)
-                setGoogleAccountUserName(data.user?.user_metadata.full_name)
-                setGoogleSignedInStatus(true)
+                setUserName(data.user?.user_metadata.full_name)
+                setLoggedIn(true)
               } else {
                 console.log("the response was unsuccessful for some reason")
               }
@@ -94,7 +95,10 @@ export default function Tab() {
                   provider: 'apple',
                   token: credential.identityToken,
                 })
-                console.log(JSON.stringify({ error, user }, null, 2))
+               console.log(JSON.stringify({ error, user }, null, 2))
+               // Get apple username
+               setUserName({ user }.user?.user_metadata.name);
+               
                 if (!error) {
                   // Apple only provides the user's full name on the first sign-in
                   // Save it to user metadata if available
@@ -114,7 +118,9 @@ export default function Tab() {
                   }
                   // User is signed in.
                   console.log("The user has successful signed in with apple.")
-                  // Example: Handling full name after successful sign in
+                  // Set apple signed in status boolean to true
+                  setLoggedIn(true)
+                 
                   if (credential.fullName) {
                     // Full name is only provided on first sign-in
                     await supabase.auth.updateUser({
@@ -144,7 +150,7 @@ export default function Tab() {
   } else {
     return (
       <View style={notionStyle.page}>
-        <Text style={notionStyle.title}>Welcome, {googleAccountUserName}👋!</Text>
+        <Text style={notionStyle.title}>Welcome, { userName }👋!</Text>
         <Text style={notionStyle.blockText}>Placeholder text to do with timers once the user is signed in via google or apple.</Text>
 
       </View>
