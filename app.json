@@ -8,6 +8,7 @@
     "scheme": "timeboxplusv2",
     "userInterfaceStyle": "automatic",
     "ios": {
+      "usesAppleSignIn": true,
       "icon": "./assets/expo.icon",
       "supportsTablet": false,
       "bundleIdentifier": "TimeboxPlusBundleID",
@@ -46,7 +47,8 @@
           "imageWidth": 76
         }
       ],
-      "expo-sqlite"
+      "expo-sqlite",
+      "expo-apple-authentication"
     ],
     "experiments": {
       "typedRoutes": true,

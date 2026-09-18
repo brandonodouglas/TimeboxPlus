@@ -8,6 +8,7 @@
     "@react-native-google-signin/google-signin": "^16.1.5",
     "@supabase/supabase-js": "^2.116.0",
     "expo": "~57.0.20",
+    "expo-apple-authentication": "~57.0.2",
     "expo-constants": "~57.0.17",
     "expo-dev-client": "~57.0.19",
     "expo-device": "~57.0.1",
@@ -30,6 +31,7 @@
     "react-native-reanimated": "4.5.1",
     "react-native-safe-area-context": "~5.7.0",
     "react-native-screens": "~4.26.0",
+    "react-native-svg": "15.15.4",
     "react-native-url-polyfill": "^4.0.0",
     "react-native-web": "~0.21.0",
     "react-native-worklets": "0.10.1"
