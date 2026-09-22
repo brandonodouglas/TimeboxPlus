@@ -8,7 +8,13 @@ import * as AppleAuthentication from 'expo-apple-authentication';
 import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { supabase } from '../../lib/supabase';
+import MyStopwatch from '../components/folder-routine-components/time-components/MyStopwatch';
+import MyTimer from '../components/folder-routine-components/time-components/MyTimer';
 import { notionStyle } from './mystyles/notionStyle';
+
+
+
+
 
 
 
@@ -17,9 +23,7 @@ import { notionStyle } from './mystyles/notionStyle';
 export default function Tab() {
   const [googleSignedInStatus, setGoogleSignedInStatus] = useState(false)
   const [userName, setUserName] = useState('')
-
   const [appleSignedInStatus, setAppleSignedInStatus] = useState(false)
-
   const [loggedIn, setLoggedIn] = useState(false);
 
 
@@ -38,6 +42,7 @@ export default function Tab() {
         <Text style={notionStyle.blockTextSmall}>Code by @brandonodouglas 2026.</Text>
         <View style={notionStyle.divider}></View>
         <Text style={notionStyle.blockTextSmall}>Ready to get started? Sign in below! 🚀</Text>
+
 
         <GoogleSigninButton
           size={GoogleSigninButton.Size.Wide}
@@ -95,10 +100,10 @@ export default function Tab() {
                   provider: 'apple',
                   token: credential.identityToken,
                 })
-               console.log(JSON.stringify({ error, user }, null, 2))
-               // Get apple username
-               setUserName({ user }.user?.user_metadata.name);
-               
+                console.log(JSON.stringify({ error, user }, null, 2))
+                // Get apple username
+                setUserName({ user }.user?.user_metadata.name);
+
                 if (!error) {
                   // Apple only provides the user's full name on the first sign-in
                   // Save it to user metadata if available
@@ -120,7 +125,7 @@ export default function Tab() {
                   console.log("The user has successful signed in with apple.")
                   // Set apple signed in status boolean to true
                   setLoggedIn(true)
-                 
+
                   if (credential.fullName) {
                     // Full name is only provided on first sign-in
                     await supabase.auth.updateUser({
@@ -150,8 +155,11 @@ export default function Tab() {
   } else {
     return (
       <View style={notionStyle.page}>
-        <Text style={notionStyle.title}>Welcome, { userName }👋!</Text>
-        <Text style={notionStyle.blockText}>Placeholder text to do with timers once the user is signed in via google or apple.</Text>
+        <Text style={notionStyle.title}>Welcome, {userName}👋!</Text>
+        <Text style={notionStyle.blockText}>You currently have 0 folder routines. Add some below!.</Text>
+        <MyStopwatch></MyStopwatch>
+        <MyTimer></MyTimer>
+
 
       </View>
     )
@@ -163,8 +171,6 @@ export default function Tab() {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'red',
-
-
     justifyContent: 'center',
     alignItems: 'center',
   },
