@@ -1,16 +1,16 @@
 import { StyleSheet } from 'react-native';
 
 // Basic Notion-style page container
-export const notionStyle  = StyleSheet.create({
+export const notionStyle = StyleSheet.create({
   page: {
-    
+
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'white',
     paddingHorizontal: 24,
     height: '100%',
 
-    
+
   },
   input: {
     margin: 12,
@@ -36,13 +36,13 @@ export const notionStyle  = StyleSheet.create({
     color: '#191919',
     paddingVertical: 4,
   },
-   blockTextSmall: {
+  blockTextSmall: {
     fontSize: 16,
     lineHeight: 24,
     color: '#191919',
     paddingVertical: 4,
   },
-   blockTextExtraSmall: {
+  blockTextExtraSmall: {
     fontSize: 8,
     lineHeight: 24,
     color: '#191919',
@@ -63,4 +63,22 @@ export const notionStyle  = StyleSheet.create({
   sidebarItemHovered: {
     backgroundColor: '#EFEFEE',
   },
+  button: {
+   backgroundColor: '#007AFF',
+    borderRadius: 12,
+    paddingVertical: 14,
+    paddingHorizontal: 24,
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: '#007AFF',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.25,
+    shadowRadius: 8,
+    elevation: 4,
+  
+  },
+  buttonPressed: {
+    backgroundColor: '#F1F1EF',
+  },
+
 });

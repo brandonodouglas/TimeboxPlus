@@ -4,10 +4,12 @@
   "version": "1.0.0",
   "dependencies": {
     "@docren/react-native-reanimated-timer": "^2.0.0",
-    "@expo/ui": "~57.0.16",
+    "@expo/ui": "~57.0.20",
     "@react-native-async-storage/async-storage": "2.2.0",
     "@react-native-google-signin/google-signin": "^16.1.5",
+    "@react-native-vector-icons/material-icons": "^13.1.4",
     "@supabase/supabase-js": "^2.116.0",
+    "@types/react-native-vector-icons": "^6.4.18",
     "expo": "~57.0.20",
     "expo-apple-authentication": "~57.0.2",
     "expo-constants": "~57.0.17",

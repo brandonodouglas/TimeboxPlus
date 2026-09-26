@@ -9,7 +9,6 @@ import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { supabase } from '../../lib/supabase';
 import MyStopwatch from '../components/folder-routine-components/time-components/MyStopwatch';
-import MyTimer from '../components/folder-routine-components/time-components/MyTimer';
 import { notionStyle } from './mystyles/notionStyle';
 
 
@@ -38,10 +37,12 @@ export default function Tab() {
     return (
       <View style={notionStyle.page}>
         <Text style={notionStyle.title}>TimeboxPlus.</Text>
+        <MyStopwatch/>
         <Text style={notionStyle.blockText}>Productivity, simplified</Text>
         <Text style={notionStyle.blockTextSmall}>Code by @brandonodouglas 2026.</Text>
         <View style={notionStyle.divider}></View>
         <Text style={notionStyle.blockTextSmall}>Ready to get started? Sign in below! 🚀</Text>
+        
 
 
         <GoogleSigninButton
@@ -157,8 +158,7 @@ export default function Tab() {
       <View style={notionStyle.page}>
         <Text style={notionStyle.title}>Welcome, {userName}👋!</Text>
         <Text style={notionStyle.blockText}>You currently have 0 folder routines. Add some below!.</Text>
-        <MyStopwatch></MyStopwatch>
-        <MyTimer></MyTimer>
+        <MyStopwatch/>
 
 
       </View>
