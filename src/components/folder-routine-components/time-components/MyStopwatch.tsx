@@ -3,9 +3,6 @@ import { MaterialIcons } from "@react-native-vector-icons/material-icons";
 import { useState } from 'react';
 import { GestureResponderEvent, StyleSheet, Text, View } from 'react-native';
 
-
-
-
 export default function MyStopwatch() {
     const [seconds, setSeconds] = useState(0)
     const [minutes, setMinutes] = useState(0);
@@ -21,8 +18,6 @@ export default function MyStopwatch() {
 
     const [timerID, setTimerID] = useState(0);
 
-
-
     function startTimer(event: GestureResponderEvent): void {
         setSeconds(0)
         setMinutes(0)
@@ -32,55 +27,51 @@ export default function MyStopwatch() {
         setPaddingHours('0')
         console.log("Timer started.")
         setTimerStarted(true)
-
         let myTimerId = setInterval(() => {
             setSeconds((seconds) => seconds + 1)
+            if (seconds > 9) {
+                setPaddingSeconds('')
 
-
-            //clearInterval(timerID);
+            }
         }, 1000)
         setTimerID(myTimerId)
-
+        
     }
-
-
 
     function resetTimer(event: GestureResponderEvent): void {
         setTimerReset(true)
         console.log("Timer reset.")
         clearInterval(timerID)
         setTimerStarted(false)
-
-
-
+        setTimerPaused(false)
+         setSeconds(0)
+        setMinutes(0)
+        setHours(0)
+        setPaddingSeconds('0')
+        setPaddingMinutes('0')
+        setPaddingHours('0')
     }
 
     function continueTimer(event: GestureResponderEvent): void {
-             console.log("Continuing timer")
+        console.log("Continuing timer")
         setTimerStarted(true)
         setTimerPaused(false)
-
         let myTimerId = setInterval(() => {
             setSeconds((seconds) => seconds + 1)
-
-
-            //clearInterval(timerID);
         }, 1000)
         setTimerID(myTimerId)
-        }
+    }
 
 
     function pauseTimer(event: GestureResponderEvent): void {
-
         console.log("Timer paused")
         clearInterval(timerID)
         setTimerPaused(true)
-
     }
 
-    if (timerPaused) {
-        
+    
 
+    if (timerPaused) {
         return (
             <View style={styles.container}>
                 <Text style={notionStyle.timerText}>{paddingHours}{hours}:{paddingMinutes}{minutes}:{paddingSeconds}{seconds}</Text>
@@ -98,15 +89,7 @@ export default function MyStopwatch() {
                 </View>
             )
         }
-
-
         if (timerStarted) {
-
-
-
-
-
-
             return (
                 <View style={styles.container}>
                     <Text style={notionStyle.timerText}>{paddingHours}{hours}:{paddingMinutes}{minutes}:{paddingSeconds}{seconds}</Text>
@@ -114,17 +97,8 @@ export default function MyStopwatch() {
                     <MaterialIcons name="replay" size={25} color="#007AFF" style={styles.iconStyle} onPress={resetTimer} />
                 </View>
             )
-
         }
-
     }
-
-
-
-
-
-
-
 }
 
 const styles = StyleSheet.create({
@@ -133,18 +107,12 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         borderStyle: 'solid',
         borderWidth: 2,
-
         flexDirection: 'row',
         padding: 10,
         alignItems: 'center',
         justifyContent: 'center',
-
-
     },
     iconStyle: {
         textAlign: 'center'
-
-
-
     }
 });
