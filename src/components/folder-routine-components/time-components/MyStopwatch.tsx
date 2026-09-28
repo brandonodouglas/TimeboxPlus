@@ -25,16 +25,46 @@ export default function MyStopwatch() {
         setPaddingSeconds('0')
         setPaddingMinutes('0')
         setPaddingHours('0')
+        
         console.log("Timer started.")
         setTimerStarted(true)
+        let tempSeconds = 0;
+        let tempMinutes = 0;
+        let tempHours = 0;
         let myTimerId = setInterval(() => {
             setSeconds((seconds) => seconds + 1)
-            if (seconds > 9) {
+            tempSeconds = tempSeconds + 1;
+            console.log(tempSeconds)
+            if (tempSeconds > 9) {
                 setPaddingSeconds('')
 
             }
+            if (tempSeconds > 59) {
+                setMinutes((minutes) => minutes + 1)
+                setSeconds(0)
+                setPaddingSeconds('0')
+                tempSeconds = 0
+            }
+            
+            if (tempMinutes > 9) {
+                setPaddingMinutes('');
+            }
+            if (tempMinutes > 59) {
+                setHours((hours) => hours + 1)
+                setMinutes(0)
+                setPaddingMinutes('0')
+                tempMinutes = 0
+            }
+
+            if (tempHours > 9) {
+                setPaddingHours('')
+            }
+           
+            
         }, 1000)
         setTimerID(myTimerId)
+        
+
         
     }
 
@@ -56,8 +86,39 @@ export default function MyStopwatch() {
         console.log("Continuing timer")
         setTimerStarted(true)
         setTimerPaused(false)
+         let tempSeconds = 0;
+        let tempMinutes = 0;
+        let tempHours = 0;
         let myTimerId = setInterval(() => {
             setSeconds((seconds) => seconds + 1)
+            tempSeconds = tempSeconds + 1;
+            console.log(tempSeconds)
+            if (tempSeconds > 9) {
+                setPaddingSeconds('')
+
+            }
+            if (tempSeconds > 59) {
+                setMinutes((minutes) => minutes + 1)
+                setSeconds(0)
+                setPaddingSeconds('0')
+                tempSeconds = 0
+            }
+            
+            if (tempMinutes > 9) {
+                setPaddingMinutes('');
+            }
+            if (tempMinutes > 59) {
+                setHours((hours) => hours + 1)
+                setMinutes(0)
+                setPaddingMinutes('0')
+                tempMinutes = 0
+            }
+
+            if (tempHours > 9) {
+                setPaddingHours('')
+            }
+           
+            
         }, 1000)
         setTimerID(myTimerId)
     }
