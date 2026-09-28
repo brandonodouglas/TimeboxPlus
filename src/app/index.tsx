@@ -37,12 +37,12 @@ export default function Tab() {
     return (
       <View style={notionStyle.page}>
         <Text style={notionStyle.title}>TimeboxPlus.</Text>
-        <MyStopwatch/>
+        <MyStopwatch />
         <Text style={notionStyle.blockText}>Productivity, simplified</Text>
         <Text style={notionStyle.blockTextSmall}>Code by @brandonodouglas 2026.</Text>
         <View style={notionStyle.divider}></View>
         <Text style={notionStyle.blockTextSmall}>Ready to get started? Sign in below! 🚀</Text>
-        
+
 
 
         <GoogleSigninButton
@@ -158,7 +158,7 @@ export default function Tab() {
       <View style={notionStyle.page}>
         <Text style={notionStyle.title}>Welcome, {userName}👋!</Text>
         <Text style={notionStyle.blockText}>You currently have 0 folder routines. Add some below!.</Text>
-        <MyStopwatch/>
+        <MyStopwatch />
 
 
       </View>

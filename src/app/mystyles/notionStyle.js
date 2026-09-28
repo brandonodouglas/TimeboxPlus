@@ -30,6 +30,14 @@ export const notionStyle = StyleSheet.create({
     marginBottom: 8,
     paddingTop: 20,
   },
+   timerText: {
+    fontSize: 15,
+ 
+
+    color: '#000000',
+    
+    
+  },
   blockText: {
     fontSize: 16,
     lineHeight: 24,
