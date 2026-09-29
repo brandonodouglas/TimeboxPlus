@@ -38,7 +38,7 @@ export default function Tab() {
     return (
       <View style={notionStyle.page}>
         <Text style={notionStyle.title}>TimeboxPlus.</Text>
-        <MyTimer hours={0} minutes={0} seconds={3} />
+        <MyTimer hours={0} minutes={3} seconds={34} />
         <MyStopwatch />
         <Text style={notionStyle.blockText}>Productivity, simplified</Text>
         <Text style={notionStyle.blockTextSmall}>Code by @brandonodouglas 2026.</Text>
