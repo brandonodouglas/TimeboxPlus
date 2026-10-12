@@ -1,3 +1,4 @@
+
 {
   "expo": {
     "name": "TimeboxPlusV2",
@@ -33,6 +34,15 @@
     },
     "plugins": [
       [
+        "expo-build-properties",
+        {
+          "ios": {
+            "enableSceneSupport": true
+          }
+        }
+      ],
+      
+      [
         "@react-native-google-signin/google-signin/app.plugin.js",
         {
           "iosUrlScheme": "com.googleusercontent.apps.1069392446627-qgok83dq08mdbconf3hqacsgu0g2i507"
@@ -48,7 +58,14 @@
         }
       ],
       "expo-sqlite",
-      "expo-apple-authentication"
+      "expo-apple-authentication",
+      "expo-status-bar",
+      "expo-image",
+      "expo-web-browser",
+      "expo-build-properties"
+        
+
+      
     ],
     "experiments": {
       "typedRoutes": true,

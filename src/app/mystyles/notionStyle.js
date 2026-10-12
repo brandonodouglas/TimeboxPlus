@@ -2,6 +2,26 @@ import { StyleSheet } from 'react-native';
 
 // Basic Notion-style page container
 export const notionStyle  = StyleSheet.create({
+
+  button: {
+    backgroundColor: '#007AFF',
+    paddingVertical: 14,
+    paddingHorizontal: 24,
+    borderRadius: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+    minHeight: 48,
+    shadowColor: '#007AFF',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 6,
+    elevation: 3,
+    
+  },
+  whiteText: {
+    color: 'white',
+
+  },
   page: {
     
     justifyContent: 'center',
