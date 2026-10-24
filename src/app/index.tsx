@@ -1,6 +1,7 @@
 
+import TimerHandler from '@/time-components/TimerHandler';
 import { SQLiteProvider, useSQLiteContext } from 'expo-sqlite';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { notionStyle } from './mystyles/notionStyle';
 
@@ -140,7 +141,10 @@ export function MainApp() {
     return (
       <View style={notionStyle.page}>
         <Text style={notionStyle.title}>Welcome, {usernameDB}</Text>
+        <Text style={notionStyle.blockText}>You currently have 0 timers.</Text>
+        <Text style={notionStyle.blockText}>Try adding some below!</Text>
 
+        <TimerHandler />
         <TouchableOpacity style={notionStyle.button} onPress={handlePressDbReset}><Text style={notionStyle.whiteText}>reset database</Text></TouchableOpacity>
 
       </View>)

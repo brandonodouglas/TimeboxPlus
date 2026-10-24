@@ -50,6 +50,12 @@ export const notionStyle  = StyleSheet.create({
     marginBottom: 8,
     paddingTop: 20,
   },
+   blockTextLarge: {
+    fontSize: 24,
+    lineHeight: 24,
+    color: '#191919',
+    paddingVertical: 4,
+  },
   blockText: {
     fontSize: 16,
     lineHeight: 24,
