@@ -30,7 +30,7 @@ export default function MyStopwatch(props: StopwatchLabelProps) {
         setPaddingSeconds('0')
         setPaddingMinutes('0')
         setPaddingHours('0')
-        
+
         console.log("Timer started.")
         setTimerStarted(true)
         let tempSeconds = 0;
@@ -50,7 +50,7 @@ export default function MyStopwatch(props: StopwatchLabelProps) {
                 setPaddingSeconds('0')
                 tempSeconds = 0
             }
-            
+
             if (tempMinutes > 9) {
                 setPaddingMinutes('');
             }
@@ -64,13 +64,13 @@ export default function MyStopwatch(props: StopwatchLabelProps) {
             if (tempHours > 9) {
                 setPaddingHours('')
             }
-           
-            
+
+
         }, 1000)
         setTimerID(myTimerId)
-        
 
-        
+
+
     }
 
     function resetTimer(event: GestureResponderEvent): void {
@@ -79,7 +79,7 @@ export default function MyStopwatch(props: StopwatchLabelProps) {
         clearInterval(timerID)
         setTimerStarted(false)
         setTimerPaused(false)
-         setSeconds(0)
+        setSeconds(0)
         setMinutes(0)
         setHours(0)
         setPaddingSeconds('0')
@@ -87,11 +87,26 @@ export default function MyStopwatch(props: StopwatchLabelProps) {
         setPaddingHours('0')
     }
 
+    // Saves the stopwatfch into a database and coverts it into a timer
+
+    function saveTimer() {
+        const stopwatchDataObject = {
+            label: props.stopwatchLabel,
+            seconds: seconds,
+            minutes: minutes,
+            hours: hours,
+            paddingSeconds: paddingSeconds,
+            paddingMinutes: paddingMinutes,
+            paddingHours: paddingHours,
+        }
+        return stopwatchDataObject;
+    }
+
     function continueTimer(event: GestureResponderEvent): void {
         console.log("Continuing timer")
         setTimerStarted(true)
         setTimerPaused(false)
-         let tempSeconds = 0;
+        let tempSeconds = 0;
         let tempMinutes = 0;
         let tempHours = 0;
         let myTimerId = setInterval(() => {
@@ -108,7 +123,7 @@ export default function MyStopwatch(props: StopwatchLabelProps) {
                 setPaddingSeconds('0')
                 tempSeconds = 0
             }
-            
+
             if (tempMinutes > 9) {
                 setPaddingMinutes('');
             }
@@ -122,8 +137,8 @@ export default function MyStopwatch(props: StopwatchLabelProps) {
             if (tempHours > 9) {
                 setPaddingHours('')
             }
-           
-            
+
+
         }, 1000)
         setTimerID(myTimerId)
     }
@@ -135,7 +150,7 @@ export default function MyStopwatch(props: StopwatchLabelProps) {
         setTimerPaused(true)
     }
 
-    
+
 
     if (timerPaused) {
         return (
@@ -144,6 +159,8 @@ export default function MyStopwatch(props: StopwatchLabelProps) {
                 <Text style={notionStyle.blockTextSmall}>{paddingHours}{hours}:{paddingMinutes}{minutes}:{paddingSeconds}{seconds}</Text>
                 <MaterialIcons name="play-arrow" size={25} color="#007AFF" style={styles.iconStyle} onPress={continueTimer} />
                 <MaterialIcons name="replay" size={25} color="#007AFF" style={styles.iconStyle} onPress={resetTimer} />
+                <MaterialIcons name="save" size={25} color="#007AFF" style={styles.iconStyle} onPress={saveTimer} />
+
             </View>
         )
     } else {
@@ -154,6 +171,7 @@ export default function MyStopwatch(props: StopwatchLabelProps) {
                     <Text style={notionStyle.blockTextLarge}>{props.stopwatchLabel}</Text>
                     <Text style={notionStyle.blockTextSmall}>00:00:00</Text>
                     <MaterialIcons name="play-arrow" size={25} color="#007AFF" style={styles.iconStyle} onPress={startTimer} />
+
                 </View>
             )
         }
@@ -165,6 +183,8 @@ export default function MyStopwatch(props: StopwatchLabelProps) {
                     <Text style={notionStyle.blockTextSmall}>{paddingHours}{hours}:{paddingMinutes}{minutes}:{paddingSeconds}{seconds}</Text>
                     <MaterialIcons name="pause" size={25} color="#007AFF" style={styles.iconStyle} onPress={pauseTimer} />
                     <MaterialIcons name="replay" size={25} color="#007AFF" style={styles.iconStyle} onPress={resetTimer} />
+                    <MaterialIcons name="save" size={25} color="#007AFF" style={styles.iconStyle} onPress={saveTimer} />
+
                 </View>
             )
         }
