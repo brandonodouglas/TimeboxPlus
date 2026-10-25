@@ -1,9 +1,11 @@
 
-import TimerHandler from '@/time-components/TimerHandler';
+import MyStopwatch from '@/time-components/MyStopwatch';
 import { SQLiteProvider, useSQLiteContext } from 'expo-sqlite';
 import React, { useEffect, useState } from 'react';
-import { Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Text, TextInput, TextInputSubmitEditingEvent, TouchableOpacity, View } from 'react-native';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { notionStyle } from './mystyles/notionStyle';
+
 
 
 
@@ -33,6 +35,9 @@ export function MainApp() {
   const [name, setName] = useState('');
   const [userName, setUserName] = useState('')
   const [showHomePage, setShowHomePage] = useState(false)
+
+  const [showTimer, setShowTimer] = useState(false);
+  const [timerLabel, setTimerLabel] = useState('')
 
   // Database related stuff
   const db = useSQLiteContext();
@@ -138,16 +143,62 @@ export function MainApp() {
 
 
 
-    return (
-      <View style={notionStyle.page}>
-        <Text style={notionStyle.title}>Welcome, {usernameDB}</Text>
-        <Text style={notionStyle.blockText}>You currently have 0 timers.</Text>
-        <Text style={notionStyle.blockText}>Try adding some below!</Text>
 
-        <TimerHandler />
-        <TouchableOpacity style={notionStyle.button} onPress={handlePressDbReset}><Text style={notionStyle.whiteText}>reset database</Text></TouchableOpacity>
+    if (!showTimer) {
+    
+      function handleSubmit(e: TextInputSubmitEditingEvent): void {
+        setTimerLabel(e.nativeEvent.text)
+        setShowTimer(true)
+      }
 
-      </View>)
+      return (
+        <SafeAreaProvider>
+          <SafeAreaView style={{ flex: 1 }}>
+            <View style={{ padding: 20, flexDirection: 'column', height: '100%' }}>
+              <View style={{ flex: 1, backgroundColor: 'red' }}><Text>Welcome, {usernameDB}!</Text></View>
+              <View style={{ flex: 2, backgroundColor: 'orange' }}><Text>You currently have 0 timers. Click the below button to add some!</Text></View>
+              <TextInput
+                style={notionStyle.input}
+                placeholder="Enter task name here"
+                onSubmitEditing={handleSubmit}
+              />
+              <TouchableOpacity style={notionStyle.button}><Text style={notionStyle.whiteText}>Add New Task Timer</Text></TouchableOpacity>
+
+
+              <View style={{ flex: 3, backgroundColor: 'yellow' }}><Text>Timer history</Text></View>
+
+              {/*  <TouchableOpacity style={notionStyle.button} onPress={handlePressDbReset}><Text style={notionStyle.whiteText}>reset database</Text></TouchableOpacity> */}
+
+            </View>
+          </SafeAreaView>
+        </SafeAreaProvider>
+      )
+
+    } else {
+      console.log("The timer label is: " + timerLabel)
+      return (
+        <SafeAreaProvider>
+          <SafeAreaView style={{ flex: 1 }}>
+            <View style={{ padding: 20, flexDirection: 'column', height: '100%' }}>
+              <View style={{ flex: 1, backgroundColor: 'red' }}><Text>Welcome, {usernameDB}!</Text></View>
+              <View style={{ flex: 2, backgroundColor: 'orange' }}><MyStopwatch stopwatchLabel={timerLabel} /></View>
+
+
+              <View style={{ flex: 3, backgroundColor: 'yellow' }}><Text>Timer history</Text></View>
+
+              {/*  <TouchableOpacity style={notionStyle.button} onPress={handlePressDbReset}><Text style={notionStyle.whiteText}>reset database</Text></TouchableOpacity> */}
+
+            </View>
+          </SafeAreaView>
+        </SafeAreaProvider>
+      )
+
+    }
+
+
+
+
+
   }
 
 

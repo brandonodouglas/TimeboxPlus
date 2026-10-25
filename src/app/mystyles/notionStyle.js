@@ -32,6 +32,15 @@ export const notionStyle  = StyleSheet.create({
 
     
   },
+
+  timerHandlerPage: {
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    paddingHorizontal: 24,
+    height: '100%',
+
+  },
   input: {
     margin: 12,
     borderWidth: 1,
